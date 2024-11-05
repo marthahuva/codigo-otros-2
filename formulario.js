@@ -1,9 +1,11 @@
-var formulario = document.querySelector("#form")
+var formulario = document.querySelector("form")
+// Al ser una etiqueta no requiere un caracter antes
 
-formulario.onsubmit = function(e) {
+// formulario.addEventListener("submit", () => {}); semejante a onsubmit
 
-  e.prevent();
-  
+formulario.onsubmit = function(event) {
+  event.preventDefault(); //modificar
+
   var n = formulario.elements[0]
   var e = formulario.elements[1]
   var na = formulario.elements[2]
@@ -23,9 +25,7 @@ formulario.onsubmit = function(e) {
     e.classList.add("error")
   }
 
-if (nombre.length > 0 
-  && (edad > 18 
-    && edad < 120) ) {
+if (nombre.length > 0 && (edad > 18 && edad < 120) ) {
   agregarInvitado(nombre, edad, nacionalidad)
   }
 }
@@ -55,24 +55,17 @@ function agregarInvitado(nombre, edad, nacionalidad) {
 var lista = document.getElementById("lista-de-invitados")
 
 var elementoLista = document.createElement("div")
-elementoLista.classList.added("elemento-lista")
+elementoLista.classList.add("elemento-lista")
 lista.appendChild(elementoLista)
 
-var spanNombre = document.createElement("span")
-var inputNombre = document.createElement("input")
-var espacio = document.createElement("br")
-spanNombre.textContent = "Nombre: "
-inputNombre.value = nombre 
-elementoLista.appendChild(spanNombre)
-elementoLista.appendChild(inputNombre)
-elementoLista.appendChild(espacio)
+// Eliminar el duplicado para crear elementos
 
 function crearElemento(descripcion, valor) {
 var spanNombre = document.createElement("span")
 var inputNombre = document.createElement("input")
 var espacio = document.createElement("br")
 spanNombre.textContent = descripcion + ": "
-inputNombre.value = valor 
+inputNombre.value = valor
 elementoLista.appendChild(spanNombre)
 elementoLista.appendChild(inputNombre)
 elementoLista.appendChild(espacio)
